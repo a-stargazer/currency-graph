@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import { render } from 'react-dom';
+import Hello from './Hello';
+import './style.css';
 
 function App() {
     const [currencies, setCurrencies] = useState([
@@ -23,6 +25,15 @@ useEffect(doFetch, []);
   return (
     <div className="NavBar">
       <h1>Currency Rates</h1>
+      <label>Choose a currency:
+        <select>
+          {
+            rate.map(rate => (
+              <option value={rate[0]}>{rate[0]}</option>
+            ))
+          }
+        </select> 
+      </label>
 
     <div className="BarChart">
     {
@@ -41,6 +52,6 @@ useEffect(doFetch, []);
   </div>
   );
 }
-  
 
-export default App;
+
+render(<App />, document.getElementById('root'));
